@@ -1,0 +1,61 @@
+{
+  ConstraintSets: {
+    start : {
+      box_demo: {
+        width: '100%',
+        height: 90,
+        end: ['parent', 'end'],
+        top: ['parent', 'top'],
+      },
+      photo: {
+        width: 90,
+        height: 90,
+        start: ['parent', 'start'],
+        top: ['parent', 'top'],
+      },
+      name: {
+        width: '100%',
+        height: 90,
+        start: ['parent', 'start', 100],
+        top: ['parent', 'top', 30],
+      },
+      action: {
+        width: '0%',
+        height: 0,
+        bottom: ['name', 'bottom', 0],
+        end: ['name', 'end', 140],
+      }
+    },
+    end : {
+      box_demo: {
+        width: '100%',
+        height: 200,
+        end: ['parent', 'end'],
+        top: ['parent', 'top', 30],
+      },
+      photo: {
+        width: 90,
+        height: 90,
+        start: ['parent', 'start', 130],
+        top: ['parent', 'top'],
+      },
+      name: {
+        width: '100%',
+        height: 90,
+        start: ['parent', 'start', 110],
+        top: ['parent', 'top', 100],
+      },
+      action: {
+        width: '100%',
+        height: 40,
+        bottom: ['name', 'bottom', 0]
+      }
+    }
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+    }
+  }
+}

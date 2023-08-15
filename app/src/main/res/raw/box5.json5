@@ -1,0 +1,86 @@
+{
+  ConstraintSets: {
+    start: {
+      box_demo: {
+        width: 80,
+        height: 80,
+        start: [
+          'parent',
+          'start',
+          0
+        ],
+        bottom: [
+          'parent',
+          'bottom',
+          0
+        ],
+      },
+      box_demo1: {
+        width: 80,
+        height: 80,
+        end: [
+          'box_demo',
+          'end',
+          10
+        ],
+        top: [
+          'parent',
+          'top',
+          10
+        ]
+      }
+    },
+    end: {
+      box_demo: {
+        width: 80,
+        height: 80,
+        end: [
+          'box_demo',
+          'end',
+          10
+        ],
+        top: [
+          'parent',
+          'top',
+         10
+        ]
+      },
+      box_demo1: {
+        width: 80,
+        height: 80,
+        start: [
+          'parent',
+          'start',
+          0
+        ],
+        bottom: [
+          'parent',
+          'bottom',
+          0
+        ]
+      }
+    },
+  },
+  Transitions: {
+    default: {
+      from: 'start',
+      to: 'end',
+      KeyFrames: {
+        KeyPositions: [
+          {
+            target: ['box_demo',],
+            frames: [10,50],
+            percentX: [0.1,0.2],
+            percentY: [0.3,0.4],
+          },
+          {
+            target: ['box_demo1',],
+            frames: [50],
+            percentX: [-0.3],
+            percentY: [0.6],
+          }
+        ]
+      }
+    }
+  }
+}

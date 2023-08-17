@@ -1,11 +1,14 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
     namespace = "com.paulo.motionanimation"
     compileSdk = 33
+    compileSdkPreview = "UpsideDownCake"
 
     defaultConfig {
         applicationId = "com.paulo.motionanimation"
@@ -30,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -67,6 +70,33 @@ dependencies {
     implementation( "io.coil-kt:coil-gif:2.1.0")
 
     implementation("me.onebone:toolbar-compose:2.3.5")
+
+
+
+    //Credentials support
+    implementation("androidx.credentials:credentials:1.2.0-alpha01")
+
+    // optional - needed for credentials support from play services, for devices running
+    // Android 13 and below.
+    implementation("androidx.credentials:credentials-play-services-auth:1.2.0-alpha01")
+
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    // ViewModel utilities for Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0-alpha05")
+    // for collectAsStateWithLifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0-alpha05")
+
+    //Credentials support
+    implementation("androidx.credentials:credentials:1.2.0-alpha01")
+
+
+    implementation("com.google.dagger:hilt-android:2.44")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
+    kapt("com.google.dagger:hilt-compiler:2.44")
+    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
 
 
     testImplementation("junit:junit:4.13.2")

@@ -1,0 +1,29 @@
+O que são Interceptores?
+De acordo com a documentação, os interceptadores são um mecanismo poderoso
+que pode monitorar, reescrever e repetir a chamada da API. Então, basicamente,
+quando fazemos alguma chamada de API, podemos monitorar a chamada ou executar
+algumas tarefas.
+
+Em palavras simples, os interceptadores são como o pessoal de segurança no processo
+de verificação de segurança no aeroporto. Eles verificam nosso cartão de embarque,
+colocam um carimbo e nos permitem passar.
+
+
+Tipos de Interceptores
+
+Temos dois tipos de interceptores, como segue:
+
+Application Interceptors : Estes são interceptores que são adicionados entre o
+Application Code (nosso código escrito) e a OkHttp Core Library. Estes são os
+que adicionamos usando addInterceptor().
+
+Interceptores de rede : são interceptadores adicionados entre a biblioteca OkHttp Core
+e o servidor. Eles podem ser adicionados ao OkHttpClient usando addNetworkInterceptor().
+
+Ao construir o OkHttpClientobjeto, podemos adicionar o interceptor conforme abaixo:
+
+fun myHttpClient(): OkHttpClient {
+    val builder = OkHttpClient().newBuilder()
+        .addInterceptor(/*our interceptor*/)
+    return builder.build()
+}

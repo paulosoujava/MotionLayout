@@ -97,7 +97,16 @@ dependencies {
     kapt("androidx.hilt:hilt-compiler:1.0.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
 
+    implementation("io.github.ahmad-hamwi:tabsync-compose:1.0.0")
 
+    implementation("me.onebone:toolbar-compose:2.3.5")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
+
+    implementation("br.com.devsrsouza.compose.icons:font-awesome:1.1.0")
+
+    implementation("com.valentinilk.shimmer:compose-shimmer:1.0.5")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardColors
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.CornerRadius
@@ -117,6 +119,9 @@ fun ReceiptCardBottomWavy(content: @Composable () -> Unit) {
             .fillMaxWidth(),
         shape = BottomWavyShape(cornerRadius = 10.dp, period = 30.dp, amplitude = 8.dp),
         border = BorderStroke(1.dp, color = Color.Black),
+        colors = CardDefaults.cardColors(
+            containerColor = Color.Black,
+        ),
     ) {
         content()
     }
@@ -130,7 +135,7 @@ fun ReceiptCardLeftWavy(content: @Composable () -> Unit) {
             .padding(top = 12.dp)
             .fillMaxWidth(),
         shape = LeftWavyShape(cornerRadius = 10.dp, period = 12.dp, amplitude = 8.dp),
-        border = BorderStroke(1.dp, color = Color.Red),
+        border = BorderStroke(1.dp, color = Color.Black),
 
     ) {
         content()

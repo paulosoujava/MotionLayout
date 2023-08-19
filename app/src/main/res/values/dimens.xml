@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="slot_padding">10</dimen>
+    <dimen name="image_size">100</dimen>
+    <dimen name="list_top_padding">10</dimen>
+</resources>

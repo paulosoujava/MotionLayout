@@ -44,6 +44,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.twotone.Clear
 import androidx.compose.material.icons.twotone.Search
+import androidx.compose.material.icons.twotone.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
@@ -63,9 +64,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.TransformOrigin
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.drawscope.scale
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -79,6 +85,8 @@ import com.paulo.motionanimation.R
 import com.paulo.motionanimation.ui.cards.CardDashDivider
 import com.paulo.motionanimation.ui.shape.ReceiptCardBottomWavy
 import com.paulo.motionanimation.ui.shape.ReceiptCardLeftWavy
+import com.paulo.motionanimation.ui.shape.TicketShape
+import com.paulo.motionanimation.ui.shape.drawTicketPath
 import com.paulo.motionanimation.ui.shape.flags.SimpleButton
 import com.valentinilk.shimmer.shimmer
 import compose.icons.FontAwesomeIcons
@@ -258,12 +266,14 @@ fun Content() {
                                 modifier = Modifier.padding(10.dp)
                             )
                             AnimatedVisibility(visible = showMore.value) {
-                                Column{
+                                Column {
                                     Spacer(modifier = Modifier.height(15.dp))
                                     CardDashDivider()
                                     Spacer(modifier = Modifier.height(15.dp))
-                                    Box(modifier = Modifier.fillMaxWidth(),
-                                        contentAlignment = Alignment.CenterEnd) {
+                                    Box(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        contentAlignment = Alignment.CenterEnd
+                                    ) {
                                         Text(
                                             text = "deslize para o lado >>",
                                             color = Color.LightGray
@@ -280,7 +290,7 @@ fun Content() {
                                                         .size(90.dp)
                                                         .background(
                                                             Color.White,
-                                                            shape =  CutCornerShape(
+                                                            shape = CutCornerShape(
                                                                 topEndPercent = 90,
                                                             ),
                                                         ),
@@ -297,20 +307,29 @@ fun Content() {
                                     Spacer(modifier = Modifier.height(15.dp))
                                     CardDashDivider()
                                     Spacer(modifier = Modifier.height(15.dp))
-                                    Box(
+                                    Row(
                                         modifier = Modifier
+                                            .fillMaxWidth()
                                             .padding(10.dp)
-                                            .fillMaxWidth(), contentAlignment = Alignment.Center
+                                            .background(Color.Red, shape = RoundedCornerShape(10.dp))
+                                            .clip(RoundedCornerShape(10.dp))
+                                            .clickable { },
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.SpaceEvenly
                                     ) {
-                                        Text(
-                                            text = "Adicionar a suas compras?",
-                                            color = Color.White,
-                                            modifier = Modifier
-                                                .background(Color.Red, shape = RoundedCornerShape(20.dp))
-                                                .clip(RoundedCornerShape(20.dp))
-                                                .clickable { }
-                                                .padding(10.dp)
 
+                                        Icon(
+                                            Icons.TwoTone.ShoppingCart,
+                                            contentDescription = null,
+                                            tint = Color.White
+                                        )
+
+                                        Text(
+                                            text = "Adicionar ao carrinho",
+                                            color = Color.White,
+                                            fontSize = 15.sp,
+                                            modifier = Modifier
+                                                .padding(15.dp)
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(15.dp))
@@ -327,17 +346,30 @@ fun Content() {
                                     .padding(10.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Text(
-                                    text = "R$: ${it.value}",
-                                    color = Color.White,
-                                    fontSize = 15.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.weight(4f),
-                                )
+                                Box(modifier = Modifier
+                                    .weight(1f)
+                                    .wrapContentSize()
+                                    .graphicsLayer {
+                                        shadowElevation = 8.dp.toPx()
+                                        shape = TicketShape(5.dp.toPx())
+                                        clip = true
+                                    }
+                                    .background(color = Color.White)
+                                    .padding(10.dp)) {
+                                    Text(
+                                        text = "R$: ${it.value}",
+                                        color = Color.Black,
+                                        fontSize = 15.sp,
+                                        fontWeight = FontWeight.Bold,
+                                    )
+                                }
+
 
                                 TextButton(onClick = {
                                     showMore.value = !showMore.value
-                                }) {
+                                },
+                                    modifier = Modifier.weight(2f)
+                                ) {
                                     Text(text = if (showMore.value) "Fechar" else " Adicionar", color = Color.Cyan)
                                 }
 

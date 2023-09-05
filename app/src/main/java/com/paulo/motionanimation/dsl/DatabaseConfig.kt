@@ -23,6 +23,12 @@ fun databaseConfig(block: DatabaseConfigBuilder.() -> Unit): DatabaseConfig {
     builder.block()
     return builder.build()
 }
+inline fun measureTime(block: () -> Unit) {
+    val start = System.currentTimeMillis()
+    block()
+    val endTime = System.currentTimeMillis()
+    println("Time taken: ${endTime - start}ms")
+}
 
 fun main() {
     val config = databaseConfig {
@@ -32,6 +38,12 @@ fun main() {
         password = "postgres"
     }
     println(config)
+
+    measureTime {
+        for (i in 1..10000000) {
+            println(i)
+        }
+    }
 }
 /*
 DSL(Domain-Specific Languages). Se você está em busca
@@ -45,3 +57,4 @@ As DSLs em Kotlin são uma forma de criar linguagens específicas de domínio,
 Um dos exemplos é a DSL de construção de interfaces gráficas do Jetpack
 Compose ou também a própria biblioteca de testes unitários Mockk.
  */
+

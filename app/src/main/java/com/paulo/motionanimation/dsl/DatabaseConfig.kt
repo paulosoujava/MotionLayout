@@ -33,3 +33,15 @@ fun main() {
     }
     println(config)
 }
+/*
+DSL(Domain-Specific Languages). Se você está em busca
+de simplificar o seu código e tornar suas APIs mais legíveis
+ e expressivas, as DSLs podem ser o seu melhor amigo.
+
+O que são DSLs em Kotlin?
+As DSLs em Kotlin são uma forma de criar linguagens específicas de domínio,
+ que permitem expressar conceitos e estruturas relacionados a um domínio
+  específico de forma mais natural e intuitiva.
+Um dos exemplos é a DSL de construção de interfaces gráficas do Jetpack
+Compose ou também a própria biblioteca de testes unitários Mockk.
+ */
